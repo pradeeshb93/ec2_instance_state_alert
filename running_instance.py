@@ -31,7 +31,7 @@ msg['Subject'] = "AWS || Running instances"
 body = ""
 msg.attach(MIMEText(body, 'plain')) 
 filename = "today_instance.csv"
-attachment = open("/Users/pradeeshb/Desktop/today_instance.csv", "rb") 
+attachment = open("instance_state.csv", "rb") 
 p = MIMEBase('application', 'octet-stream') 
 p.set_payload((attachment).read()) 
 encoders.encode_base64(p) 
@@ -40,7 +40,8 @@ msg.attach(p)
 # creates SMTP session 
 s = smtplib.SMTP('smtp.gmail.com', 587) 
 s.starttls() 
-s.login(fromaddr, "Pradeesh@1993") 
+# inclue the email address password in s.login()
+s.login(fromaddr, "xxxxx") 
 text = msg.as_string() 
 s.sendmail(fromaddr, toaddr, text) 
 s.quit()
